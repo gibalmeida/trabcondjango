@@ -1,0 +1,10 @@
+{%  extends "website/_layout/base.html" %}
+
+{% block title %}Meus Dados{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  
+	{% csrf_token %}
+	{% crispy form %}
+{% endblock %}

@@ -1,0 +1,29 @@
+{%  extends "website/_layout/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <p>Seja bem-vindo {{ user.username }}!</p>
+    {% else %}
+    <p>Seja bem-vindo visitante.</p>
+    {% endif %}
+    {% if vagas_disponiveis|length > 0 %}
+        <h1>Vagas disponíveis no momento</h1>
+        {% for vaga in vagas_disponiveis %}
+        <div class="card mt-2 mb-2" style="width: 40rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{ vaga.nome }}</h5>
+            <p class="card-text">
+                {{ vaga.detalhes }}
+            </p>
+            <p class="card-text">Departamento: {{ vaga.departamento.nome }}</p>
+            <p class="card-text">Publicado em: {{ vaga.data_de_publicacao|date }}</p>
+            <a href="{% url 'vagas:candidatarse' vaga.id %}" class="btn btn-primary">Candidatar-se</a>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Não há vagas disponíveis no momento. Mas, caso ainda não tenha se cadastrado em nosso site, clique no botão abaixo e faça o seu cadastro.</p>
+    {% endif %}
+{% endblock %}

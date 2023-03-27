@@ -1,0 +1,10 @@
+{%  extends "website/_layout/base.html" %}
+
+{% block title %}Candidatar-se a uma vaga{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+Confirma a sua candidatura a seguinte vaga?
+{{ vaga.nome }}
+{% crispy form %}
+{% endblock %}
